@@ -19,8 +19,8 @@ namespace AdventOfCode_2022
 
 
 
-        static StreamReader streamReader = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1");
-        static StreamReader streamReader2 = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1");
+        static StreamReader streamReader = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1.txt");
+        static StreamReader streamReader2 = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1.txt");
         static void Main(string[] args)
         {
             Console.WriteLine("Part 1 of 1st Day: ");
