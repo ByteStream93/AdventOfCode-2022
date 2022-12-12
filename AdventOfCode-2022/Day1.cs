@@ -12,15 +12,15 @@ namespace AdventOfCode_2022
         static int heaviestElve;
         static int result;
         static int highestScore;
-        static String row = "";
+        static String row = "t";
         static List<int> list = new List<int>();
 
 
 
 
 
-        static StreamReader streamReader = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode\\Day1\\Day1\\Input.txt");
-        static StreamReader streamReader2 = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode\\Day1\\Day1\\Input.txt");
+        static StreamReader streamReader = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1");
+        static StreamReader streamReader2 = new StreamReader("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\AdventOfCode-2022\\Input1");
         static void Main(string[] args)
         {
             Console.WriteLine("Part 1 of 1st Day: ");
