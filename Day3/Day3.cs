@@ -48,5 +48,18 @@ namespace Day3
 
         }
 
+        public static void part2()
+        {
+            var inputLines = File.ReadAllLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\Day3\\Input3.txt");
+            var input = new List<string>(inputLines);
+            var characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToArray();
+            int valueOfLetters = 0;
+
+
+          
+
+            Console.WriteLine(valueOfLetters.ToString());
+        }
+
     }
 }
