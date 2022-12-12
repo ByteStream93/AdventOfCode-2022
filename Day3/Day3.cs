@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Day3
             Console.WriteLine();
 
             Console.WriteLine("Second part of day3: ");
-
+            part2();
         }
 
 
@@ -55,7 +56,40 @@ namespace Day3
             var characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToArray();
             int valueOfLetters = 0;
 
+            int rowCount = 0;
+            var line = new String[3];
 
+            foreach(var row in input)
+            {
+                if(rowCount < 3)
+                {
+                    line[rowCount] = row;
+                    rowCount++;
+                }
+
+                if (rowCount == 3)
+                {
+                    var match = new List<char>();
+
+                    foreach (var x in line[1])
+                    {
+                        if (line[0].Contains(x))
+                        {
+                            match.Add(x);
+                        }
+                    }
+                    foreach(var y in line[2])
+                    {
+                        if (match.Contains(y))
+                        {
+                            valueOfLetters += Array.IndexOf(characters, y) + 1;
+                            break;
+                        }
+                    }
+                    line = new String[3];
+                    rowCount = 0;
+                }
+            }
           
 
             Console.WriteLine(valueOfLetters.ToString());
