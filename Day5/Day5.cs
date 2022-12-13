@@ -125,8 +125,7 @@ namespace Day5
                 {
                     var piece = actual[actual.Count - 1];
                     newList.Add(piece);
-                    actual.RemoveAt(actual.Count - 1);
-                    Console.WriteLine(piece);
+                    actual.RemoveAt(actual.Count - 1);                   
                 }
 
                 newList.Reverse();
