@@ -59,12 +59,13 @@ namespace Day5
             {
                 var numbers = move.Split("-");
 
-                var amount = Int32.Parse(numbers[1]);
-                var from = Int32.Parse(numbers[2]);
-                var to = Int32.Parse(numbers[3]);
-
+                int amount = Int32.Parse(numbers[1]);
+                int from = (Int32.Parse(numbers[2]))-1;
+                int to = Int32.Parse((numbers[3]))-1;
+                
+               
                 var actual = stack[from];
-
+                
                 for (int i = 1; i <= amount; i++)
                 {
                     
