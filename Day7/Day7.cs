@@ -28,6 +28,7 @@ namespace Day7
             int folderCounter = 0;
             int orderEntered = 0;
             int fileCounter = 0;
+            int totalSum = 0;
 
 
             var input = File.ReadLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\Day7\\Input7.txt");
@@ -40,12 +41,15 @@ namespace Day7
                     
                     if(line.Substring(0,3) == "dir")
                     {
+                        Console.WriteLine("opened Folder");
                         if (capacitySum <= 100000 && orderEntered == 1)
                         {
-                            Console.WriteLine("check");
+                            
                             folderCounter++;
+                            totalSum += capacitySum;
                             capacitySum = 0;
                             orderEntered = 0;
+
                         }
                     }
                     else
@@ -63,7 +67,7 @@ namespace Day7
                     capacitySum = 0;
                 }
             }
-            Console.WriteLine(folderCounter);
+            Console.WriteLine(totalSum);
 
         }
 
