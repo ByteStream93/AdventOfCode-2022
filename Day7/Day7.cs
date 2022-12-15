@@ -37,55 +37,6 @@ namespace Day7
 
             var commands = new List<string>(input);
 
-            foreach(var line in commands)
-            {
-                if(line.Substring(0,1) != "$"){
-                    
-                    if(line.Substring(0,3) == "dir")
-                    {
-                        Console.WriteLine("opened Folder");
-                        if (capacitySum <= 100000 && orderEntered == 1)
-                        {
-                            
-                            folderCounter++;
-                            totalSum += capacitySum;
-                            capacitySum = 0;
-                            orderEntered = 0;
-
-                        }
-                    }
-                    else
-                    {
-                        var splittedLine = line.Split(' ');
-                        capacitySum += Int32.Parse(splittedLine[0]);
-                        orderEntered = 1;
-                        fileCounter++;
-                        Console.WriteLine("SpaceData: " +splittedLine[0] + " Counted: " + folderCounter + " FilesFound: " + fileCounter);
-                    }
-                    
-                }
-                else
-                {                 
-                    capacitySum = 0;
-                }
-            }
-            Console.WriteLine(totalSum);
-
-        }
-
-        static void partTest()
-        {
-            int capacitySum = 0;
-            int folderCounter = 0;
-            int orderEntered = 0;
-            int fileCounter = 0;
-            int totalSum = 0;
-
-
-            var input = File.ReadLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\Day7\\inputTest.txt");
-
-            var commands = new List<string>(input);
-
             foreach (var line in commands)
             {
                 if (line.Substring(0, 1) != "$")
@@ -120,10 +71,6 @@ namespace Day7
                 }
             }
             Console.WriteLine(totalSum);
-        }
-
-        static void part2()
-        {
 
         }
 
