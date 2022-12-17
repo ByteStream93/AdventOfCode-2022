@@ -37,7 +37,7 @@ namespace Day7
 
             var commands = new List<string>(input);
 
-<<<<<<< HEAD
+
             foreach (var line in commands)
             {
                 if (line.Substring(0, 1) != "$")
@@ -85,10 +85,10 @@ namespace Day7
 
             var commands = new List<string>(input);
 
+           
+
             foreach (var line in commands)
-=======
-            foreach (var line in commands)
->>>>>>> aa68a1bea615a0cf466ddd1c3dce75152ae6ef3a
+
             {
                 if (line.Substring(0, 4) == "$ ls")
                 {
