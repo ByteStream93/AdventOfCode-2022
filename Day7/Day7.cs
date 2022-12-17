@@ -12,7 +12,7 @@ namespace Day7
         public static void Main(string[] args)
         {
 
-            Console.WriteLine("First part of day 7: ");
+            //Console.WriteLine("First part of day 7: ");
             //part1();
 
             Console.WriteLine();
@@ -20,7 +20,7 @@ namespace Day7
             Console.WriteLine("Second part of day 7: ");
             part2();
 
-            partTest();
+
         }
 
         static void part1()
@@ -37,6 +37,7 @@ namespace Day7
 
             var commands = new List<string>(input);
 
+<<<<<<< HEAD
             foreach (var line in commands)
             {
                 if (line.Substring(0, 1) != "$")
@@ -73,6 +74,61 @@ namespace Day7
             Console.WriteLine(totalSum);
 
         }
+        static void part2()
+        {
+            int capacitySum = 0;
+            int enteredFile = 0;
+            int totalSum = 0;
+
+
+            var input = File.ReadLines("C:\\Users\\Marco\\source\\repos\\ByteStream93\\AdventOfCode-2022\\Day7\\inputTest.txt");
+
+            var commands = new List<string>(input);
+
+            foreach (var line in commands)
+=======
+            foreach (var line in commands)
+>>>>>>> aa68a1bea615a0cf466ddd1c3dce75152ae6ef3a
+            {
+                if (line.Substring(0, 4) == "$ ls")
+                {
+
+                    enteredFile = 1;
+
+
+                }
+                if (line.Substring(0, 4) == "$ cd")
+                {
+                    enteredFile = 0;
+                    capacitySum = 0;
+
+                }
+                if (enteredFile == 1 && line.Substring(0, 1) != "$")
+                {
+                    if (enteredFile == 1 && line.Substring(0, 3) != "dir")
+                    {
+                        var splittedLine = line.Split(' ');
+
+
+                        if (!(splittedLine[0].Contains("$")) || !splittedLine[0].Contains("dir"))
+                        {
+                            Console.WriteLine(splittedLine[0]);
+                            int num = Int32.Parse(splittedLine[0]);
+                            capacitySum += num;
+                        }
+                    }
+                }
+
+                if (capacitySum < 10000)
+                {
+                    totalSum += capacitySum;
+                }
+
+            }
+            Console.WriteLine(totalSum);
+
+        }
+
 
     }
 }
