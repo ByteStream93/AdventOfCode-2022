@@ -12,8 +12,8 @@ namespace Day7
         public static void Main(string[] args)
         {
 
-            //Console.WriteLine("First part of day 7: ");
-            //part1();
+            Console.WriteLine("First part of day 7: ");
+            part1();
 
             Console.WriteLine();
 
@@ -26,112 +26,83 @@ namespace Day7
         static void part1()
         {
 
-            int capacitySum = 0;
-            int folderCounter = 0;
-            int orderEntered = 0;
-            int fileCounter = 0;
-            int totalSum = 0;
-
-
-            var input = File.ReadLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\AdventOfCode-2022\\Day7\\Input7.txt");
-
-            var commands = new List<string>(input);
-
-
-            foreach (var line in commands)
-            {
-                if (line.Substring(0, 1) != "$")
-                {
-
-                    if (line.Substring(0, 3) == "dir")
-                    {
-                        Console.WriteLine("opened Folder");
-                        if (capacitySum <= 100000 && orderEntered == 1)
-                        {
-
-                            folderCounter++;
-                            totalSum += capacitySum;
-                            capacitySum = 0;
-                            orderEntered = 0;
-
-                        }
-                    }
-                    else
-                    {
-                        var splittedLine = line.Split(' ');
-                        capacitySum += Int32.Parse(splittedLine[0]);
-                        orderEntered = 1;
-                        fileCounter++;
-                        Console.WriteLine("SpaceData: " + splittedLine[0] + " Counted: " + folderCounter + " FilesFound: " + fileCounter);
-                    }
-
-                }
-                else
-                {
-                    capacitySum = 0;
-                }
-            }
-            Console.WriteLine(totalSum);
-
-        }
-        static void part2()
-        {
-            int capacitySum = 0;
-            int enteredFile = 0;
-            int totalSum = 0;
-
-
             var input = File.ReadLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\Day7\\Input7.txt");
 
-            var commands = new List<string>(input);
-            var results = new List<int>();
-           
+            var row = new List<string>(input);
 
-            foreach (var line in commands)
+            var currentDirectory = new List<string>();
 
+            string createCurrentDirectory()
             {
-                if (line.Substring(0, 4) == "$ ls")
+                string dir = string.Join("/", currentDirectory);
+                dir = dir.Replace("//", "/");
+                return dir;
+            }
+
+            var dictionarySize = new Dictionary<string, int>();
+
+            foreach (var line in row)
+            {
+                if (line.Substring(0, 1) == "$")
                 {
+                    var command = line.Split(" ");
 
-                    enteredFile = 1;
-
-
-                }
-                if (line.Substring(0, 4) == "$ cd")
-                {
-                    if (capacitySum < 100000)
+                    if (command[1] == "cd")
                     {
-                        Console.WriteLine(capacitySum);
-                        totalSum += capacitySum;
-                        
-                    }
-                    enteredFile = 0;
-                    capacitySum = 0;
-
-                }
-                if (enteredFile == 1 && line.Substring(0, 1) != "$")
-                {
-                    if (enteredFile == 1 && line.Substring(0, 3) != "dir")
-                    {
-                        var splittedLine = line.Split(' ');
-
-
-                        if (!(splittedLine[0].Contains("$")) || !splittedLine[0].Contains("dir"))
+                        if (command[2] == "..")
                         {
-                            
-                            int num = Int32.Parse(splittedLine[0]);
-                            capacitySum += num;
+                            currentDirectory.RemoveAt(currentDirectory.Count - 1);
+                        }
+                        else
+                        {
+                            currentDirectory.Add(command[2]);
                         }
                     }
                 }
+                else if (line.Substring(0, 3) != "dir")
+                {
+                    var file = line.Split(" ");
+                    if (!dictionarySize.ContainsKey(createCurrentDirectory()))
+                    {
+                        dictionarySize[createCurrentDirectory()] = 0;
+                    }
+                    string dir = createCurrentDirectory();
+                    while (dir.Contains("/"))
+                    {
+                        if (!dictionarySize.ContainsKey(dir))
+                        {
+                            dictionarySize[dir] = 0;
+                        }
+                        dictionarySize[dir] += Convert.ToInt32(file[0]);
 
+                        if (dir == "/") break;
 
+                        var dirSplit = dir.Split("/").ToList();
+                        dirSplit.RemoveAt(dirSplit.Count - 1);
+                        dir = string.Join("/", dirSplit);
+                    }
+                }
             }
-            Console.WriteLine();
-            Console.WriteLine(totalSum);
 
+            int output = 0;
+
+            foreach (var item in dictionarySize)
+            {
+                if (item.Value <= 100000)
+                {
+                    output += item.Value;
+                }
+            }
+
+            Console.WriteLine(output);
         }
 
+        static void part2()
+        {
 
+
+        }
     }
 }
+
+
