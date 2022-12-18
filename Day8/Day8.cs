@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Day8
+{
+    public class Day8
+    {
+
+        public static void Main(string[] args)
+        {
+            part1();
+        }
+
+
+        static void part1()
+        {
+            var inputText = File.ReadAllLines("C:\\Users\\herzo\\Source\\Repos\\ByteStream93\\AdventOfCode-2022\\Day8\\Input8.txt");
+
+            var input = new List<string>(inputText);
+            var field = new List<List<int>>();
+
+            foreach (var line in input)
+            {
+                var row = new List<int>();
+
+                foreach (var tree in line)
+                {
+                    row.Add(Convert.ToInt32(tree));
+                }
+                field.Add(row);
+            }
+
+            int visibleTrees = 0;
+
+            visibleTrees += (field.Count * 2) + (field[0].Count * 2) - 4;
+
+            
+
+            bool visibility = true;
+
+            for (int horizontal = 1; horizontal < field.Count - 1; horizontal++)
+            {
+                for (int vertikal = 1 ; vertikal < field.Count - 1; vertikal++)
+                {
+
+                    int heightCurrentTree = field[horizontal][vertikal];
+
+
+
+                    for (int columnLeft = vertikal - 1; vertikal >= 0; vertikal--)
+                    {
+                        if (field[horizontal][columnLeft] >= heightCurrentTree)
+                        {
+                            visibility = false;
+                            break;
+                        }
+                    }
+                    if (visibility)
+                    {
+                        visibleTrees++;
+                        continue;
+                    }
+
+                    visibility = true;
+
+                    for (int columnRight = vertikal + 1; vertikal >= 0; vertikal++)
+                    {
+                        if (field[horizontal][columnRight] >= heightCurrentTree)
+                        {
+                            visibility = false;
+                            break;
+                        }
+
+                        if (visibility)
+                        {
+                            visibleTrees++;
+                            continue;
+                        }
+
+                        visibility = true;
+
+                        for (int rowLeft = horizontal - 1; horizontal >= 0; horizontal--)
+                        {
+                            if (field[horizontal][rowLeft] >= heightCurrentTree)
+                            {
+                                visibility = false;
+                                break;
+                            }
+
+                            if (visibility)
+                            {
+                                visibleTrees++;
+                                continue;
+                            }
+
+                            visibility = true;
+
+                            for (int rowRight = horizontal + 1; horizontal >= 0; horizontal++)
+                            {
+                                if (field[horizontal][rowRight] >= heightCurrentTree)
+                                {
+                                    visibility = false;
+                                    break;
+                                }
+
+                                if (visibility)
+                                {
+                                    visibleTrees++;
+                                    continue;
+                                }
+
+                                visibility = true;
+
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+            Console.WriteLine(visibleTrees);
+        }
+    }
+}
+
