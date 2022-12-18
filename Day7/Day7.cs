@@ -81,10 +81,10 @@ namespace Day7
             int totalSum = 0;
 
 
-            var input = File.ReadLines("C:\\Users\\Marco\\source\\repos\\ByteStream93\\AdventOfCode-2022\\Day7\\inputTest.txt");
+            var input = File.ReadLines("C:\\Users\\herzo\\source\\repos\\ByteStream93\\AdventOfCode-2022\\Day7\\Input7.txt");
 
             var commands = new List<string>(input);
-
+            var results = new List<int>();
            
 
             foreach (var line in commands)
@@ -99,6 +99,12 @@ namespace Day7
                 }
                 if (line.Substring(0, 4) == "$ cd")
                 {
+                    if (capacitySum < 100000)
+                    {
+                        Console.WriteLine(capacitySum);
+                        totalSum += capacitySum;
+                        
+                    }
                     enteredFile = 0;
                     capacitySum = 0;
 
@@ -112,19 +118,16 @@ namespace Day7
 
                         if (!(splittedLine[0].Contains("$")) || !splittedLine[0].Contains("dir"))
                         {
-                            Console.WriteLine(splittedLine[0]);
+                            
                             int num = Int32.Parse(splittedLine[0]);
                             capacitySum += num;
                         }
                     }
                 }
 
-                if (capacitySum < 10000)
-                {
-                    totalSum += capacitySum;
-                }
 
             }
+            Console.WriteLine();
             Console.WriteLine(totalSum);
 
         }
