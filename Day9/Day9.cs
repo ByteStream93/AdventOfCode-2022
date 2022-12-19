@@ -25,7 +25,8 @@ namespace Day9
 
             var input = new List<string>(inputText);
 
-            ArrayList positions = new ArrayList();
+            var positions = new HashSet<string>();
+            
 
             int head_x = 0;
             int head_y = 0;
@@ -33,12 +34,14 @@ namespace Day9
             int tail_x = 0;
             int tail_y = 0;
 
+            
+
             Console.WriteLine(tail_x + " " + tail_y);
             foreach (var line in input)
             {
                 var direction = line.Split(" ");
 
-                for (int move = 0; move < Int32.Parse(direction[1]); move++){
+                for (int move = 0; move < Int32.Parse(direction[1]); move++) {
 
                     if (direction[0] == "U")
                     {
@@ -78,8 +81,10 @@ namespace Day9
                         }
 
                         Console.WriteLine(tail_x + " " + tail_y);
-                        positions.Insert(tail_x, tail_y);
-                        
+
+
+                        positions.Add(addPosition(tail_x, tail_y));
+
 
                     }
 
@@ -87,10 +92,17 @@ namespace Day9
 
             }
             Console.WriteLine(positions.Count);
-            
-            }
 
+        }
 
+        static string addPosition(int x_coordinate, int y_coordinate)
+        {
+
+            return $"{x_coordinate.ToString()},{y_coordinate.ToString()}";
+
+        }
+
+    
         }
 
     }
