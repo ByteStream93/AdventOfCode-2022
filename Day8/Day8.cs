@@ -13,6 +13,7 @@ namespace Day8
         public static void Main(string[] args)
         {
             part1();
+            
         }
 
 
@@ -38,22 +39,40 @@ namespace Day8
 
             visibleTrees += (field.Count * 2) + (field[0].Count * 2) - 4;
 
-            
 
-            bool visibility = true;
+
+
 
             for (int horizontal = 1; horizontal < field.Count - 1; horizontal++)
             {
-                for (int vertikal = 1 ; vertikal < field.Count - 1; vertikal++)
+                for (int vertikal = 1; vertikal < field[horizontal].Count - 1; vertikal++)
                 {
 
                     int heightCurrentTree = field[horizontal][vertikal];
 
+                    bool visibility = true;
 
 
-                    for (int columnLeft = vertikal - 1; vertikal >= 0; vertikal--)
+                    for (int columnLeft = vertikal - 1; columnLeft >= 0; columnLeft--)
                     {
                         if (field[horizontal][columnLeft] >= heightCurrentTree)
+                        {
+
+                            visibility = false;
+                            break;
+                        }
+                    }
+                    if (visibility)
+                    {
+                        visibleTrees++;
+                        continue;
+                    }
+
+                    visibility = true;
+
+                    for (int columnRight = vertikal + 1; columnRight < field[horizontal].Count; columnRight++)
+                    {
+                        if (field[horizontal][columnRight] >= heightCurrentTree)
                         {
                             visibility = false;
                             break;
@@ -67,14 +86,14 @@ namespace Day8
 
                     visibility = true;
 
-                    for (int columnRight = vertikal + 1; vertikal >= 0; vertikal++)
+                    for (int upperRow = horizontal - 1; upperRow >= 0; upperRow--)
                     {
-                        if (field[horizontal][columnRight] >= heightCurrentTree)
+                        if (field[upperRow][vertikal] >= heightCurrentTree)
                         {
                             visibility = false;
                             break;
                         }
-
+                    }
                         if (visibility)
                         {
                             visibleTrees++;
@@ -83,14 +102,14 @@ namespace Day8
 
                         visibility = true;
 
-                        for (int rowLeft = horizontal - 1; horizontal >= 0; horizontal--)
+                    for (int belowRow = horizontal + 1; belowRow < field.Count; belowRow++)
+                    {
+                        if (field[belowRow][vertikal] >= heightCurrentTree)
                         {
-                            if (field[horizontal][rowLeft] >= heightCurrentTree)
-                            {
-                                visibility = false;
-                                break;
-                            }
-
+                            visibility = false;
+                            break;
+                        }
+                    }
                             if (visibility)
                             {
                                 visibleTrees++;
@@ -99,32 +118,17 @@ namespace Day8
 
                             visibility = true;
 
-                            for (int rowRight = horizontal + 1; horizontal >= 0; horizontal++)
-                            {
-                                if (field[horizontal][rowRight] >= heightCurrentTree)
-                                {
-                                    visibility = false;
-                                    break;
-                                }
+                 }
+             }
 
-                                if (visibility)
-                                {
-                                    visibleTrees++;
-                                    continue;
-                                }
-
-                                visibility = true;
-
-                            }
-                        }
-
-
-                    }
-
-                }
-            }
             Console.WriteLine(visibleTrees);
         }
-    }
+
+     }
+            
 }
+      
+        
+
+
 
