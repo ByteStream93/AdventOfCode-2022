@@ -21,7 +21,7 @@ namespace Day9
 
         static void part1()
         {
-            var inputText = File.ReadAllLines("C:\\Users\\herzo\\Source\\Repos\\ByteStream93\\AdventOfCode-2022\\Day9\\Input9.txt");
+            var inputText = File.ReadAllLines("C:\\Users\\Marco\\Source\\Repos\\ByteStream93\\AdventOfCode-2022\\Day9\\Input9.txt");
 
             var input = new List<string>(inputText);
 
@@ -36,7 +36,7 @@ namespace Day9
 
             
 
-            Console.WriteLine(tail_x + " " + tail_y);
+            
             foreach (var line in input)
             {
                 var direction = line.Split(" ");
@@ -60,7 +60,7 @@ namespace Day9
                         head_x++;
                     }
 
-                    if (!(Math.Abs(head_x - tail_x) <= 1) && !(Math.Abs(head_y - tail_y) == 1))
+                    if (!(Math.Abs(head_x - tail_x) == 1) && !(Math.Abs(head_y - tail_y) == 1))
                     {
 
                         if (head_x > tail_x)
