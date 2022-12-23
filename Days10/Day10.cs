@@ -36,13 +36,13 @@ namespace Days10
                 if (line.StartsWith("a"))
                 {
                     var numToAdd = line.Split(" ");
+                    
                     cycle++;
-                    check();
+                    check();               
+                                       
+                    cycle++;
                     tempResult += Int32.Parse(numToAdd[1]);
-                    
-                    
-                        cycle++;
-                    
+
                     check();
                     
                 }
@@ -50,6 +50,7 @@ namespace Days10
                 {
                     cycle++;
                     check();
+                    
                 }
 
                
@@ -58,7 +59,7 @@ namespace Days10
         }
         public static void check()
         {
-            if (cycle == 20 || cycle == 60 || cycle == 100 || cycle == 140 || cycle == 180 || cycle == 220)
+            if ((cycle - 20) % 40 == 0 )
             {
               
                     Console.WriteLine(tempResult);
