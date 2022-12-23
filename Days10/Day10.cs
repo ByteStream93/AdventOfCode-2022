@@ -18,7 +18,7 @@ namespace Days10
 
         }
 
-        //13320 & 13540 are too high
+        //13320 & 13540 are too high... 12820 false too
 
         static int cycle = 0;
         static int tempResult = 1;
@@ -36,26 +36,25 @@ namespace Days10
                 if (line.StartsWith("a"))
                 {
                     var numToAdd = line.Split(" ");
-                    
-                    cycle++;
-                    check();               
-                                       
-                    cycle++;
-                    tempResult += Int32.Parse(numToAdd[1]);
 
-                    check();
-                    
+                    for (int turn = 0; turn < 2; turn++)
+                    {
+                        cycle++;
+                        check();
+                    }                   
+                                        
+                    tempResult += Int32.Parse(numToAdd[1]);
                 }
                 if (line.StartsWith("n"))
                 {
                     cycle++;
                     check();
                     
-                }
-
-               
+                }               
             }
+
             Console.WriteLine(result);
+
         }
         public static void check()
         {
